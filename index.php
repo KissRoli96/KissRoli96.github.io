@@ -1,14 +1,36 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Simple Crud</title>
-</head>
-<body>
+<?php
+require 'users.php';
+include 'partials/header.php';
+$users = getUsers();
+?>
 
-</body>
-</html>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Website</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($users as $user ): ?>
+            <tr>
+                <td><?= $user['name'] ?></td>
+                <td><?= $user['username'] ?></td>
+                <td><?= $user['email'] ?></td>
+                <td><?= $user['phone'] ?></td>
+                <td><?= $user['website'] ?></td>
+                <td>
+                    <a href="view.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-info">View</a>
+                    <a href="update.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-secondary">Update</a>
+                    <a href="delete.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php include 'partials/footer.php' ?>
