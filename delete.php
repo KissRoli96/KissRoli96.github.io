@@ -7,7 +7,6 @@ if (!isset($_POST['id'])) {
     exit;
 }
 
-
 $userId = $_POST['id'];
 deleteUser($userId);
 
